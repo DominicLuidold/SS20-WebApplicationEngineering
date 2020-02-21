@@ -1,0 +1,8 @@
+# IDE specific
+*/.idea/
+*/out/
+*.iml
+
+# Irrelevant files & folders
+*/META-INF/
+*/build/
