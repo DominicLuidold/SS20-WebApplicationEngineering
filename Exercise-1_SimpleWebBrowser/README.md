@@ -17,4 +17,4 @@ See available `.jar` files in the [dist](./dist) folder.
 
 ## License
 This piece of code is distributed under the terms of the MIT License.
-For detailed information, please refer to [LICENSE](../LICENSE) in this folder.
+For detailed information, please refer to [LICENSE](../LICENSE) in this repository.
