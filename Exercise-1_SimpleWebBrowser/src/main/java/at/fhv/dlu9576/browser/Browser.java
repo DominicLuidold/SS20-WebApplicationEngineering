@@ -106,7 +106,7 @@ public class Browser {
     }
 
     /**
-     * Extract host from a URL.
+     * Extract the host from a URL.
      * <p>
      * Requirement for this method is a valid URL, see {@link #isValidURL(String url)}.
      *
@@ -116,5 +116,23 @@ public class Browser {
      */
     public static String getHostFromURL(String url) {
         return url.replaceFirst("^https?://", "").split("/", 2)[0];
+    }
+
+    /**
+     * Extract the document reference from a URL.
+     * <p>
+     * Requirement for this method is a valid URL, see {@link #isValidURL(String url)}.
+     * Not used in the current version of SimpleWebBrowser but required by specifications.
+     *
+     * @param url The URL, must be valid
+     *
+     * @return the document reference of a URL, empty when no reference is given
+     */
+    public static String getDocumentReferenceFromURL(String url) {
+        String[] urlParts = url.replaceFirst("^https?://", "").split("/", 2);
+        if (urlParts.length > 1) {
+            return urlParts[1];
+        }
+        return "";
     }
 }

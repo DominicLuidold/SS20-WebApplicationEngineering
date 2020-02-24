@@ -95,4 +95,17 @@ class BrowserTest {
     void getHostFromURL_ShouldReturnHost(String url, String expectedResult) {
         assertEquals(expectedResult, Browser.getHostFromURL(url));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "http://example.com, ''",
+            "http://example.com/XYZ.html, XYZ.html",
+            "https://www.example.com/XYZ.html, XYZ.html",
+            "https://www.example.com/XYZ/abc.html, XYZ/abc.html",
+            "https://192.168.0.1/XYZ/ABC/def.jpg, XYZ/ABC/def.jpg",
+            "http://localhost/XYZ, XYZ"
+    })
+    void getDocumentReferenceFromURL_ShouldReturnDocumentReference(String url, String expectedResult) {
+        assertEquals(expectedResult, Browser.getDocumentReferenceFromURL(url));
+    }
 }
