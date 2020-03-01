@@ -5,6 +5,10 @@
  */
 package at.fhv.dlu9576.server;
 
+import at.fhv.dlu9576.server.exception.BadRequestException;
+import at.fhv.dlu9576.server.exception.MethodNotAllowedException;
+import at.fhv.dlu9576.server.exception.UnsupportedHTTPVersionException;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -13,7 +17,7 @@ import java.net.Socket;
  * HTTP requests performed by a client.
  *
  * @author Dominic Luidold
- * @version 1.0
+ * @version 1.1
  */
 public class ClientHandler implements Runnable {
     private final Socket _connection;
@@ -49,6 +53,9 @@ public class ClientHandler implements Runnable {
                 httpRequest.append(line).append("\r\n");
             }
 
+            /* Analyze HTTP request */
+            Server.analyzeHTTPRequest(httpRequest.toString());
+
             /* Get file from web root directory */
             File file = new File(_webRootDirectory, Server.getResourcePathFromRequest(httpRequest.toString()));
             BufferedReader fileReader = new BufferedReader(new FileReader(file));
@@ -62,12 +69,21 @@ public class ClientHandler implements Runnable {
                 _out.write("\r\n");
             }
             fileReader.close();
+        } catch (BadRequestException e) {
+            Server.writeHTTPHeader(Server.HTTPStatus.BAD_REQUEST, _out, null);
+            _out.write("<html><body><h1>400 - Bad Request</h1></body></html>\r\n");
         } catch (FileNotFoundException e) {
             Server.writeHTTPHeader(Server.HTTPStatus.NOT_FOUND, _out, null);
             _out.write("<html><body><h1>404 - Not Found</h1></body></html>\r\n");
+        } catch (MethodNotAllowedException e) {
+            Server.writeHTTPHeader(Server.HTTPStatus.METHOD_NOT_ALLOWED, _out, null);
+            _out.write("<html><body><h1>405 - Method Not Allowed</h1></body></html>\r\n");
         } catch (IOException e) {
             Server.writeHTTPHeader(Server.HTTPStatus.INTERNAL_SERVER_ERROR, _out, null);
             _out.write("<html><body><h1>500 - Internal Server Error</h1></body></html>\r\n");
+        } catch (UnsupportedHTTPVersionException e) {
+            Server.writeHTTPHeader(Server.HTTPStatus.UNSUPPORTED_HTTP_VERSION, _out, null);
+            _out.write("<html><body><h1>505 - HTTP Version not supported</h1></body></html>\r\n");
         } finally {
             _out.flush();
             try {
