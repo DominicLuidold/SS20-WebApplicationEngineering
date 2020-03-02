@@ -13,7 +13,7 @@ public class MethodNotAllowedException extends Exception {
     private static final long serialVersionUID = -8656206107012779558L;
 
     /**
-     * Constructs an {@code UnsupportedMethodException} with {@code null}
+     * Constructs an {@code MethodNotAllowedException} with {@code null}
      * as its error detail message.
      */
     public MethodNotAllowedException() {
@@ -21,7 +21,7 @@ public class MethodNotAllowedException extends Exception {
     }
 
     /**
-     * Constructs an {@code UnsupportedMethodException} with the specified detail message.
+     * Constructs an {@code MethodNotAllowedException} with the specified detail message.
      *
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
