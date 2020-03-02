@@ -98,6 +98,9 @@ public class Server {
 
     /**
      * Analyze a HTTP request regarding its validity and requirements based on HTTP version.
+     * <p>
+     * The content of the "Host" header field is checked to see if any value is present. No
+     * further validations are performed at this time.
      *
      * @param httpRequest the HTTP request to analyze
      *
@@ -134,13 +137,13 @@ public class Server {
 
         /* Analyze HTTP "Host" header field, if HTTP/1.1 */
         String httpHeader = httpRequestParts[1];
-        Matcher m = Pattern.compile("(?i)(Host:).+\r?\n").matcher(httpHeader);
+        Matcher m = Pattern.compile("(?i)Host:.+\r?\n").matcher(httpHeader);
         String hostField = "";
         if (m.find()) {
             hostField = m.group();
         }
-        hostField = hostField.replaceAll("Host: ", "").replaceAll("\r?\n", "");
-        if (hostField.isEmpty() || (!hostField.equals("localhost") && !hostField.equals("localhost:8080"))) {
+        hostField = hostField.replaceAll("(?i)Host: ", "").replaceAll("\r?\n", "");
+        if (hostField.isEmpty()) { // Only verifies that a host is given, no further checks are performed at this time
             throw new BadRequestException("Unknown host");
         }
     }
