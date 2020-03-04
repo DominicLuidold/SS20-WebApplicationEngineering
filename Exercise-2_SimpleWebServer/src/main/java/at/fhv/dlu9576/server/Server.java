@@ -15,6 +15,7 @@ import java.net.Socket;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -118,6 +119,12 @@ public class Server {
             throw new BadRequestException();
         }
 
+        /* Require valid request URI */
+        String url = requestLine[1];
+        if (!url.matches("^https?://.+") && !url.matches("^/.*")) {
+            throw new BadRequestException();
+        }
+
         /* Require HTTP "GET" as method */
         String httpMethod = requestLine[0];
         if (httpMethod.isEmpty()) {
@@ -158,8 +165,11 @@ public class Server {
     public static String getResourcePathFromRequest(String httpRequest) {
         String requestLine = httpRequest.split("\r?\n", 2)[0];
         String resource = requestLine.replaceFirst("^GET ((https?://)?[^/ ]+)?", "").replaceAll("(\\.\\./)+", "").split(" ")[0];
-        if (requestLine.isEmpty() || resource.isEmpty() || resource.equals("/")) {
+        /* Default to "index.html" if no file if specified */
+        if (resource.isEmpty() || resource.equals("/")) {
             return "/index.html";
+        } else if (resource.endsWith("/")) {
+            return resource + "index.html";
         }
         return resource;
     }
@@ -172,17 +182,15 @@ public class Server {
      * @param file   The file to get information
      */
     public static void writeHTTPHeader(HTTPStatus status, Writer out, File file) {
-        DateFormat dateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss z");
+        DateFormat dateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss z", Locale.ENGLISH);
         try {
-            if (status == HTTPStatus.OK) {
-                out.write(status.getDescription() + "\r\n");
-                out.write("Last-Modified: " + dateFormat.format(file.lastModified()) + "\r\n");
-                out.write("Content-Length: " + file.length() + "\r\n");
-            } else {
-                out.write(status.getDescription() + "\r\n");
-            }
+            out.write(status.getDescription() + "\r\n");
             out.write("Date: " + dateFormat.format(new Date()) + "\r\n");
             out.write("Server: SimpleWebServer/1.1\r\n");
+            if (status == HTTPStatus.OK) {
+                out.write("Last-Modified: " + dateFormat.format(file.lastModified()) + "\r\n");
+                out.write("Content-Length: " + file.length() + "\r\n");
+            }
             out.write("Content-Type: text/html\r\n\r\n");
         } catch (IOException e) {
             System.out.println("An error occurred while writing HTTP header: " + e.getMessage());
