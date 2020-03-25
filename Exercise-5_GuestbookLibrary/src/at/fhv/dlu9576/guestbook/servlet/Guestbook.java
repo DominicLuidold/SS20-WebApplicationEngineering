@@ -30,7 +30,7 @@ public class Guestbook extends HttpServlet {
 
         /* HTML body */
         out.println("<body>");
-        out.println("<a href='../'>Zurück zur Übersicht</a>");
+        out.println("<a href='./index.html'>Zurück zur Übersicht</a>");
 
         /* Form */
         out.println("<h1>Guestbook</h1><h3>Create a new entry</h3>");
