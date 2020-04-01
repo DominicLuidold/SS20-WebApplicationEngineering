@@ -12,6 +12,6 @@ function imagePopup(imagePath) {
             popup.document.getElementsByTagName("img")[0].onclick = function () {
                 popup.close();
             };
-        }
+        };
     };
 }

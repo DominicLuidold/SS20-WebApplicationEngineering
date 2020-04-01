@@ -6,8 +6,8 @@
     <body>
         <h1>Table Generator</h1>
         <form name="tableGenerator" action="index.jsp">
-            Rows: <input type="number" name="rows" min="0" max="16" value="0">
-            Columns: <input type="number" name="columns" min="0" max="16" value="0">
+            Rows: <input type="number" name="rows" min="0" max="16" value="0" required>
+            Columns: <input type="number" name="columns" min="0" max="16" value="0" required>
             <button type="submit">Submit</button>
             <button type="reseft">Reset</button>
         </form>
