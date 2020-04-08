@@ -1,0 +1,30 @@
+@media print {
+    * {
+        color: black !important;
+    }
+
+    h1, h2, h3, h4, h5 {
+        /**
+        Set font size to 1,25x the size of parent container's font. This reduces the size of
+        headings noticeably, as the typical parent container's font size is much smaller compared
+        to default headings.
+         */
+        font-size: 125% !important;
+    }
+
+    img {
+        filter: grayscale(100%);
+    }
+
+    .lead {
+        font-size: 1rem !important;
+    }
+
+    .display-3 {
+        font-weight: 500 !important;
+    }
+
+    .jumbotron {
+        background-color: white !important;
+    }
+}
