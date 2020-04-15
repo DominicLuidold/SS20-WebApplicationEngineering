@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="SimpleLibrary - Ihre Anlaufstelle für Bücher, Zeitungen und Hörspiele!">
+        <meta name="keywords" content="SimpleLibrary, Bibliothek, Bücher, Zeitungen, Hörspiele">
+        <meta name="robots" content="index, follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+        <title>SimpleLibrary</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/custom.css">
+        <link rel="stylesheet" href="./css/print.css">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+              integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+              crossorigin="anonymous">
+
+        <!-- JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/cookieHandler.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#"><i class="fa fa-book"></i> SimpleLibrary</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                    aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="media/books.html">Bücher</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="media/newspapers.html">Zeitungen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="media/audio.html">Hörspiele</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="guestbook">Gästebuch</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="history.jsp">Verlauf</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="account.jsp">Account beantragen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:donot@sendan.email">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i> Kontakt via E-Mail
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main">
+            <!-- Willkommensnachricht -->
+            <div class="jumbotron">
+                <div class="container">
+                    <h1 class="display-3">Willkommen bei der SimpleLibrary!</h1>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                        ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
+                        sit amet.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Angebotene Medien -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Angebotene Medien</h3>
+                        <hr>
+                        <p>Folgende Medien-Typen stehen in der SimpleLibrary zur Auswahl:</p>
+                        <ul>
+                            <li><a href="media/books.html">Bücher</a></li>
+                            <li><a href="media/newspapers.html">Zeitungen</a></li>
+                            <li><a href="media/audio.html">Hörspiele</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Allgemeine Informationen -->
+                <div class="row">
+                    <!-- Gebühren -->
+                    <div class="col-md-4">
+                        <h3>Gebühren</h3>
+                        <hr>
+                        <p><b>Mitgliedschaft - Erwachsener:</b>
+                            Monatskarte: 3€
+                            Jahreskarte: 30€
+                        </p>
+                        <p><b>Mitgliedschaft - Kind:</b>
+                            Monatskarte: 1,5€
+                            Jahreskarte: 15€
+                        </p>
+                    </div>
+                    <!-- Öffnungszeiten -->
+                    <div class="col-md-4">
+                        <h3>Öffnungszeiten</h3>
+                        <hr>
+                        <p><b>Montag - Donnerstag:</b>
+                            08:00 - 12:00 Uhr
+                            13:00 - 18:00 Uhr
+                        </p>
+                        <p><b>Freitag & Samstag:</b>
+                            08:00 - 13:00 Uhr
+                        </p>
+                        <p><b>Sonntag & Feiertage:</b>
+                            Geschlossen
+                        </p>
+                    </div>
+                    <!-- Kontakt -->
+                    <div class="col-md-4">
+                        <h3>Kontakt</h3>
+                        <hr>
+                        <p><b>Adresse:</b>
+                            SimpleLibrary GmbH
+                            Eine Straße 1
+                            0000 Musterstadt
+                            Österreich
+                        </p>
+                        <p><b>Tel:</b> +43 0000 123456789
+                            <b>E-Mail:</b> donot@send.anemail
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="container">
+            <hr>
+            <p>&copy; SimpleLibrary 2020</p>
+        </footer>
+
+    </body>
+</html>
