@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view>
+        <h:outputLabel value="Bewertung abgeben"/>
+    </f:view>
+
+    <h:form>
+        <h:outputLabel for="userID">User-ID:</h:outputLabel>
+        <!-- Source: https://docs.oracle.com/javaee/7/tutorial/jsf-facelets009.htm -->
+        <h:inputText id="userID" value="#{rating.userID}" required="true" requiredMessage="Bitte eine User-ID angeben!">
+            <f:passThroughAttribute name="value" value="${sessionScope.login.userID}"/>
+        </h:inputText>
+        <h:message for="userID" style="color:darkred"/>
+
+        <br/>
+        <br/>
+
+        <h:outputLabel for="mediaType">Medientyp auswählen:</h:outputLabel>
+        <h:selectOneListbox id="mediaType" value="#{rating.mediaType}" required="true" requiredMessage="Bitte einen Medientyp auswählen!">
+            <f:selectItem itemValue="Books" itemLabel="Bücher"/>
+            <f:selectItem itemValue="Audio" itemLabel="Audio"/>
+        </h:selectOneListbox>
+        <h:message for="mediaType" style="color:darkred"/>
+
+        <br/>
+        <br/>
+
+        <h:commandButton value="Bestätigen" action="rating.xhtml">
+            <f:actionListener binding="#{rating.prepareMediaElements()}"/>
+        </h:commandButton>
+    </h:form>
+
+</html>

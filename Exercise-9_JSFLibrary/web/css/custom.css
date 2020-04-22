@@ -1,0 +1,20 @@
+body {
+    padding-top: 3.5rem;
+}
+
+div.col-md-4 > p {
+    white-space: pre-line;
+}
+
+.main-content {
+    padding-top: 2rem;
+}
+
+.media-content {
+    padding-top: 1rem;
+}
+
+.content-image {
+    padding-right: 1rem;
+    height: 200px;
+}
