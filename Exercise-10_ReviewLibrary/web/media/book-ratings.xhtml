@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:outputLabel><h1>Bewertung einsehen für <i>Corpus Delicti</i></h1></h:outputLabel>
+        </f:view>
+        <h:outputLink value="./books">Zurück zur Übersicht</h:outputLink>
+        <h:form>
+            <h:selectManyListbox value="#{rating.selectedCriteria}">
+                <f:selectItem itemValue="rating" itemLabel="Bewertung"/>
+                <f:selectItem itemValue="age" itemLabel="Altersempfehlung"/>
+                <f:selectItem itemValue="comment" itemLabel="Kommentar"/>
+                <f:ajax listener="#{rating.listenToCriteriaChanges}" render="book-ratings"/>
+            </h:selectManyListbox>
+
+            <h:panelGroup id="book-ratings">
+                <h:dataTable value="#{rating.shownRatings}" var="rating" rendered="#{rating.shownRatings.size() != 0}">
+
+                    <h:column rendered="${rating.showRating}">
+                        <f:facet name="header">Bewertung</f:facet>
+                        #{rating.rating}
+                    </h:column>
+
+                    <h:column rendered="${rating.showAge}">
+                        <f:facet name="header">Geeignet für Kinder</f:facet>
+                        #{rating.forChild}
+                    </h:column>
+
+                    <h:column rendered="${rating.showAge}">
+                        <f:facet name="header">Geeignet für Jugendliche</f:facet>
+                        #{rating.forTeen}
+                    </h:column>
+
+                    <h:column rendered="${rating.showAge}">
+                        <f:facet name="header">Geeignet für Erwachsene</f:facet>
+                        #{rating.forAdult}
+                    </h:column>
+
+                    <h:column rendered="${rating.showComment}">
+                        <f:facet name="header">Kommentar</f:facet>
+                        #{rating.comment}
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+        </h:form>
+    </h:body>
+</html>

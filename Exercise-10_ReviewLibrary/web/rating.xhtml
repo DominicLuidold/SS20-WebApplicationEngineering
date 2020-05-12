@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view>
+        <h:outputLabel><h1>Bewertung abgeben für Medientyp <i>#{rating.mediaType}</i></h1></h:outputLabel>
+    </f:view>
+
+    <h:form>
+        <h:outputLabel for="mediaElement" value="Medienelement auswählen (*)"/><br/>
+        <h:selectOneMenu id="mediaElement" value="#{rating.mediaElement}" required="true" requiredMessage="Bitte ein Medienelement auswählen!">
+            <f:selectItem itemLabel="Auswählen.." noSelectionOption="true"/>
+            <f:selectItems value="#{rating.availableMediaElements}"/>
+        </h:selectOneMenu>
+        <h:message for="mediaElement" style="color:darkred"/>
+
+        <br/><br/>
+
+        <h:outputLabel for="rating" value="Bewertung (*)"/>
+        <h:selectOneRadio id="rating" value="#{rating.rating}" required="true" requiredMessage="Bitte eine Bewertung auswählen!">
+            <f:selectItem itemLabel="Ausgezeichnet" itemValue="Ausgezeichnet" />
+            <f:selectItem itemLabel="Gut" itemValue="Gut" />
+            <f:selectItem itemLabel="Befriedigend" itemValue="Befriedigend" />
+            <f:selectItem itemLabel="Genügend" itemValue="Genügend" />
+            <f:selectItem itemLabel="Ungenügend" itemValue="Ungenügend" />
+        </h:selectOneRadio>
+        <h:message for="rating" style="color:darkred"/>
+
+        <br/>
+
+        <h:outputLabel for="forChild" value="Geeignet für Kinder" />
+        <h:selectBooleanCheckbox id="forChild" value="#{rating.forChild}" /><br/>
+        <h:outputLabel for="forTeen" value="Geeignet für Jugendliche" />
+        <h:selectBooleanCheckbox id="forTeen" value="#{rating.forTeen}" /><br/>
+        <h:outputLabel for="forAdult" value="Geeignet für Erwachsene" />
+        <h:selectBooleanCheckbox id="forAdult" value="#{rating.forAdult}" />
+
+        <br/><br/>
+
+        <h:outputLabel value="Kommentar (optional)" for="comment"/><br/>
+        <h:inputTextarea id="comment" value="#{rating.comment}"/>
+
+        <br/><br/>
+
+        <h:commandButton value="Bewertung abschicken" action="rating-success.xhtml">
+            <f:actionListener binding="#{rating.save()}"/>
+        </h:commandButton>
+    </h:form>
+</html>
