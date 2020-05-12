@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+#events {
+    height: 100vh;
+    width: 34vw;
+    overflow: auto;
+}
+
+#events div {
+    margin: 20px;
+    cursor: pointer;
+    font-family: -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Helvetica Neue",
+    Arial, sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}
+
+#events div:hover {
+    background-color: #f0f4f5;
+}
+
+#map {
+    height: 100vh;
+    width: 66vw;
+}
