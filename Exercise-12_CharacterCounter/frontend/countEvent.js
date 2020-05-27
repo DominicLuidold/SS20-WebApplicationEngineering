@@ -4,8 +4,8 @@ const countField = document.getElementById('character_count');
 
 const infoText = 'Anzahl Zeichen: '
 
-// Add 'keyup' event listener to catch input
-inputField.addEventListener('keyup', function (event) {
+// Add 'input' event listener to catch input
+inputField.addEventListener('input', function (event) {
     // Fetch counter backend with 'POST' and JSON object containing the string
     fetch('http://localhost:8080', {
         method: 'POST',
