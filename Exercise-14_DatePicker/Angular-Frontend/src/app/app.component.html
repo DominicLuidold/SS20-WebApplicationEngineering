@@ -1,0 +1,19 @@
+<h3>Bitte Datum auswählen</h3>
+<mat-form-field>
+  <mat-label>Datum..</mat-label>
+  <input matInput [matDatepicker]="picker1" (dateChange)="onDateChange($event)">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+<br>
+
+<span><strong>Ausgewähltes Datum:</strong> {{ (date | date: 'dd. MMMM yyyy') || '/' }}</span>
+
+<div *ngIf="serverResponse">
+  <strong>Origin-Host IP-Adressen:</strong><br>
+  <ul>
+    <li *ngFor="let ipAddress of serverResponse.hostIp">{{ ipAddress }}</li>
+  </ul>
+  <strong>Server Datum:</strong> {{ (serverResponse.date | date: 'dd. MMMM yyyy') || '/' }}<br>
+  <strong>Server Zeit:</strong> {{ (serverResponse.time | date: 'HH:mm:ss') || '/' }}
+</div>
